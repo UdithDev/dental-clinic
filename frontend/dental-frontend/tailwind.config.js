@@ -6,6 +6,9 @@ export default {
       colors:{
         accent:"#e63946",
         pearlWhite: "#EAE7DC",
+        headbg:"#2D9596",
+        hover:"#9AD0C2",
+        headbgsm:"#265073"
       }
     },
   },
