@@ -8,7 +8,8 @@ export default {
         pearlWhite: "#EAE7DC",
         headbg:"#2D9596",
         hover:"#9AD0C2",
-        headbgsm:"#265073"
+        headbgsm:"#265073",
+        footerbg:"#2D9596"
       }
     },
   },
