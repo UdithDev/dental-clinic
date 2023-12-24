@@ -1,12 +1,20 @@
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import LandingPage from "./components/LandingPage"
+
 
 
 function App() {
   return (
     <>
     <Header/>
-      <div>Hi i am dev</div>
+    <LandingPage/>
+      {/* <main className="">
+       <Routes>
+        <Route/>
+
+       </Routes>
+      </main> */}
       <Footer/>
 
     </>
