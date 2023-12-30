@@ -49,12 +49,14 @@ function Header() {
         >
           HOME
         </button>
-        <button
-          type="button"
-          className="text-white hover:text-black/80 border-b-[2px] border-white/20 "
-        >
-          INVENTORY
-        </button>
+        <Link to="/inventory">
+          <button
+            type="button"
+            className="text-white hover:text-black/80 border-b-[2px] border-white/20 "
+          >
+            INVENTORY
+          </button>
+        </Link>
       </div>
     </div>
   );

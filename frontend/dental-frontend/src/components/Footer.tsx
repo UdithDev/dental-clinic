@@ -1,4 +1,5 @@
 import React from "react";
+
 import dentallogo from "../assets/images/dentallogo.png";
 
 function Footer() {
