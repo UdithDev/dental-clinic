@@ -28,7 +28,7 @@ function HeroSection() {
 
 function Service() {
   return (
-    <div className="">
+    <div className="grid md:grid-cols-3 grid-cols-1 gap-5">
       {services.map((service) => (
         <div
           key={service.title}
