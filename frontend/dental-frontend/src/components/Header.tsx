@@ -22,13 +22,17 @@ function Header() {
         <div className="flex w-full space-x-4 max-w-xl items-center justify-end">
           <div className="hidden md:block font-semibold">
             <div className=" flex gap-5">
-              <button type="button" className="hover:text-teal-300">
-                HOME
-              </button>
+              <Link to="/">
+                <button type="button" className="hover:text-teal-300">
+                  HOME
+                </button>
+              </Link>
 
-              <button type="button" className="hover:text-teal-300">
-                INVENTORY
-              </button>
+              <Link to="/inventory">
+                <button type="button" className="hover:text-teal-300">
+                  INVENTORY
+                </button>
+              </Link>
             </div>
           </div>
           <IoMdMenu
@@ -43,12 +47,14 @@ function Header() {
         className={`${toggle ? "" : "hidden"}
       relative p-4 gap-2 text-sm font-semibold bg-headbgsm shadow-sm flex flex-col items-center justify-center`}
       >
-        <button
-          type="button"
-          className="text-white hover:text-black/80 border-b-[2px] border-white/20 "
-        >
-          HOME
-        </button>
+        <Link to="/">
+          <button
+            type="button"
+            className="text-white hover:text-black/80 border-b-[2px] border-white/20 "
+          >
+            HOME
+          </button>
+        </Link>
         <Link to="/inventory">
           <button
             type="button"
