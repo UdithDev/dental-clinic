@@ -27,19 +27,65 @@ function UpdateItem() {
 
   const getItembyId = async () => {
     const response = await axios.get(
-        `${import.meta.env.VITE_API}/inventory/${id}`
+      `${import.meta.env.VITE_API}/inventory/${id}`
     );
 
     setState({
-        item_name: response?.data?.item_name,
-        sku: response?.data?.sku,
-        serial_number: response?.data?.serial_number,
-        vendor_details: response?.data?.vendor_details,
-        item_location: response?.data?.item_location,
-        expiry_date: response?.data?.expiry_date,
-        quantity_available: response?.data?.quantity_available,
-        minimum_stock: response?.data?.minimum_stock,
-    })
+      item_name: response?.data?.item_name,
+      sku: response?.data?.sku,
+      serial_number: response?.data?.serial_number,
+      vendor_details: response?.data?.vendor_details,
+      item_location: response?.data?.item_location,
+      expiry_date: response?.data?.expiry_date,
+      quantity_available: response?.data?.quantity_available,
+      minimum_stock: response?.data?.minimum_stock,
+    });
   };
+
+  useEffect(() => {
+    getItembyId();
+  }, [id]);
+
+  const handleChange = (item: any) => (e: any) => {
+    setState({ ...state, [item]: e.target.value });
+  };
+
+  const {
+    item_name,
+    sku,
+    serial_number,
+    vendor_details,
+    item_location,
+    expiry_date,
+    quantity_available,
+    minimum_stock,
+  } = state;
+
+  const handleSubmt = async (e: any) => {
+    e.preventDefault();
+    try {
+      const response: any = await axios.put(
+        `${import.meta.env.VITE_API}/inventory/${id}`,
+        {
+          item_name,
+          sku,
+          serial_number,
+          vendor_details,
+          item_location,
+          expiry_date,
+          quantity_available,
+          minimum_stock,
+        }
+      );
+
+      setSuccess(response);
+      navigate("/inventory");
+    } catch (err: any) {
+      setError(err.response?.data?.error);
+    }
+  };
+
+
+  
 }
 export default UpdateItem;
