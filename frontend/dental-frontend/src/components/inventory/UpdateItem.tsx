@@ -163,9 +163,54 @@ function UpdateItem() {
             value={state.vendor_details}
           />
         </div>
+        <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+          <label
+            htmlFor="grid-city"
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+          >
+            Location
+          </label>
+          <div className="relative">
+            <select
+              title="select"
+              onChange={handleChange("item_location")}
+              id="location"
+              className="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              value={state.item_location}
+            >
+              <option value="">Select</option>
+              <option value="Ampara">Ampara</option>
+              <option value="Anuradhapura">Anuradhapura</option>
+              <option value="Badulla">Badulla</option>
+              <option value="Batticaloa">Batticaloa</option>
+              <option value="Colombo">Colombo</option>
+              <option value="Galle">Galle</option>
+              <option value="Gampaha">Gampaha</option>
+              <option value="Hambantota">Hambantota</option>
+              <option value="Jaffna">Jaffna</option>
+              <option value="Kalutara">Kalutara</option>
+              <option value="Kandy">Kandy</option>
+              <option value="Kegalle">Kegalle</option>
+              <option value="Kilinochchi">Kilinochchi</option>
+              <option value="Kurunegala">Kurunegala</option>
+              <option value="Mannar">Mannar</option>
+              <option value="Matale">Matale</option>
+              <option value="Matara">Matara</option>
+              <option value="Monaragala">Monaragala</option>
+              <option value="Mullaitivu">Mullaitivu</option>
+              <option value="Nuwara Eliya">Nuwara Eliya</option>
+              <option value="Polonnaruwa">Polonnaruwa</option>
+              <option value="Puttalam">Puttalam</option>
+              <option value="Ratnapura">Ratnapura</option>
+              <option value="Trincomalee">Trincomalee</option>
+              <option value="Vavuniya">Vavuniya</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+              
+            </div>
+          </div>
+        </div>
       </div>
-
-      
     </form>
   );
 }
