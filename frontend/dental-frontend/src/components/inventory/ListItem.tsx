@@ -37,5 +37,12 @@ function ListItem({
     calculateDaysUntilExpiration();
   }, [expiry_date]);
 
+  const deleteAlert = () => {
+    return (
+      <tr className="fixed flex items-center justify-center bottom-2 left-5 py-2 px-10 gap-2 bg-white border-[1px] text-red-600 border-red-600">
+        <td className="font-semibold">Item deleted</td>
+      </tr>
+    );
+  };
   
 }
