@@ -228,9 +228,51 @@ function UpdateItem() {
             type="date"
             className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             id="expiry"
-            value={state.expiry_date.substring(0,10)}
+            value={state.expiry_date.substring(0, 10)}
           />
         </div>
+        <div className="w-full md:w-1/3 px-3 mb-6">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="quantity"
+          >
+            Quantity Available
+          </label>
+          <input
+            onChange={handleChange("quantity_available")}
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="quantity"
+            type="text"
+            placeholder="100"
+            value={state.quantity_available}
+          />
+        </div>
+        <div className="w-full md:w-1/3 px-3 mb-6">
+          <label
+            className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            htmlFor="min-stock"
+          >
+            Min Stock
+          </label>
+          <input
+            onChange={handleChange("minimum_stock")}
+            className="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+            id="min-stock"
+            type="text"
+            placeholder="10 packs"
+            value={state.minimum_stock}
+          />
+        </div>
+      </div>
+      <div className="flex items-center justify-between">
+        <button
+          type="submit"
+          className="px-2 w-24 h-8 bg-accent font-medium text-sm text-white rounded-full"
+        >
+          Update
+        </button>
+
+        {}
       </div>
     </form>
   );
