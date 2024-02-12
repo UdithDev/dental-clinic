@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+
+import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { useNavigate, useParams } from "react-router-dom";
 
 function UpdateItem() {
@@ -272,7 +274,18 @@ function UpdateItem() {
           Update
         </button>
 
-        {}
+        {error && (
+          <div className="bg-accent/5 flex items-center gap-2 rounded-full border-[1px] border-accent py-2 px-2">
+            <AiOutlineExclamationCircle className="w-5 text-accent" />
+            <p className="text-xs font-bold text-accent">{error}</p>
+          </div>
+        )}
+        {success && !error && (
+          <div className="bg-green-600/5 flex item-center gap-2 rounded-full border-[1px] border-green-600 py-2 px-2">
+            <AiOutlineExclamationCircle className="w-5 text-green-600" />
+            <p className="text-xs font-bold text-green-600">Item Updated</p>
+          </div>
+        )}
       </div>
     </form>
   );
