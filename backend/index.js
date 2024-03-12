@@ -1,24 +1,20 @@
 const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+
 const app = express();
-const port = 8000;
+app.use(cors());
 
+dotenv.config();
 
-app.use(express.json())
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
-
-
-
-app.get("/:name", (req, res) => {
-  const data = req.params.name;
-  console.log(data)
-//   if (data) {
-//     console.log(data.name);
-//     res.send("Hi I am Server backend");
-//   }
-res.send("Hi "+data);
-
+app.get("/", (req, res) => {
+  res.send("Api is Running");
 });
 
-app.listen(port, () => {
-  console.log(`app is running on ${port}`);
-});
+app.use("/api/inventory", inventoryRoutes);
+
+let PORT = process.env.PORT;
+app.listen(PORT, console.log(`Server started on ${PORT}`));
