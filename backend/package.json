@@ -2,9 +2,9 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "dental api",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon ."
+    "start": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
