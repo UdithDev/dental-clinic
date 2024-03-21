@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
+const connectDB=require("./config/db");
 
 const inventoryRoutes = require("./routes/inventoryRoutes");
 
@@ -8,6 +9,7 @@ const app = express();
 app.use(cors());
 
 dotenv.config();
+connectDB();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
