@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { AiOutlineExclamationCircle } from "react-icons/ai";
+import { expressUrl } from "../../constants";
 
 function ItemForm() {
   const [error, setError] = useState("");
@@ -14,7 +16,7 @@ function ItemForm() {
   }, [success]);
 
   const [state, setState] = useState({
-    item__name: "",
+    item_name: "",
     sku: "",
     serial_number: "",
     vendor_details: "",
@@ -27,7 +29,7 @@ function ItemForm() {
     setState({ ...state, [item]: e.target.value });
   };
   const {
-    item__name,
+    item_name,
     sku,
     serial_number,
     vendor_details,
@@ -37,31 +39,38 @@ function ItemForm() {
     minimum_stock,
   } = state;
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
+  const handleSubmit = async () => {
     try {
-      const response: any = await axios.post(
-        `${import.meta.env.VITE_API}/inventory/add`,
-        {
-          item__name,
-          sku,
-          serial_number,
-          vendor_details,
-          item_location,
-          expiry_date,
-          quantity_available,
-          minimum_stock,
-        }
-      );
-      setSuccess(response);
+      const requestUrl = `${expressUrl}/api/inventory/add`;
+      const requestBody = {
+        item_name,
+        sku,
+        serial_number,
+        vendor_details,
+        item_location,
+        expiry_date,
+        quantity_available,
+        minimum_stock,
+      };
+      const response = await axios.post(requestUrl, requestBody);
+
+      if (response.status !== 201) {
+        throw new Error("Backend failure");
+      } else {
+        const { data } = response;
+        setSuccess(data);
+      }
     } catch (err: any) {
-      setError(err.response?.data?.error);
+      setError(err.response.data.error);
     }
   };
   return (
     <form
       onChange={() => setSuccess("")}
-      onSubmit={handleSubmit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        return handleSubmit();
+      }}
       className="w-full lg:max-w-2xl bg-pearlWhite/30 p-5 rounded-lg"
     >
       <div className="flex flex-wrap -mx-3 mb-6">
