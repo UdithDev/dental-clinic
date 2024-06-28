@@ -14,18 +14,24 @@ const {
   updateInventoryItem,
   getItemById,
 } = require("../controllers/inventoryController");
+const { isIntern, isAdmin, isManager } = require("../middlewares/authCheck");
 
 const router = express.Router();
 
-router.route("/").get(getInventory);
+router.get("/", isIntern, getInventory);
 router
   .route("/add")
-  .post(inventoryCreateValidator, runValidation, createInventoryItem);
+  .post(
+    inventoryCreateValidator,
+    runValidation,
+    isManager,
+    createInventoryItem
+  );
 router
-  .route(":/id")
-  .get(getItemById)
-  .delete(deleteInventoryItem)
-  .put(inventoryCreateValidator, runValidation, updateInventoryItem);
-router.route("/send-email").post(sendEmail);
+  .route("/:id")
+  .get(isIntern, getItemById)
+  .delete(isManager, deleteInventoryItem)
+  .put(inventoryCreateValidator, runValidation, isManager, updateInventoryItem);
+router.route("/send-email").post(isManager, sendEmail);
 
 module.exports = router;
