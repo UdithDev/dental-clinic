@@ -22,6 +22,10 @@ const registerUser = async (req, res) => {
     return res.status(409).send({ message: "Username already exists!" });
   }
 
+  if (!email) {
+    return res.status(400).send({ message: "Email is required!" });
+  }
+
   // Hashing the password
   const hashedPassword = await encryptPassword(password);
 
@@ -32,7 +36,7 @@ const registerUser = async (req, res) => {
       username,
       hashedPassword,
       email,
-      role: "INTERN",
+      role: role || "ADMIN", //Deafult
     });
   } catch (error) {
     return res.status(400).send({
@@ -125,7 +129,18 @@ const loginUser = async (req, res) => {
   });
 };
 
+const getUserList = async (req, res) => {
+  try {
+    const users = await User.find({});
+
+    return res.status(200).send(users);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 module.exports = {
   registerUser,
   loginUser,
+  getUserList,
 };

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useTokenAsBearer } from "../../utils/useToken";
 import useUser from "../../hooks/useUser";
+import { PiProhibit } from "react-icons/pi";
 
 interface ListItemProps {
   _id: string;
@@ -124,14 +125,19 @@ function ListItem({
         <td>{minimum_stock}</td>
         <td>
           <div className="flex items-center justify-center gap-3">
-            <Link to={`/inventory/update/${_id}`}>
-              <PencilIcon className="w-4 hover:text-accent cursor-pointer" />
-            </Link>
-
-            <TrashIcon
-              onClick={handleDelete}
-              className="w-4 hover:text-accent cursor-pointer"
-            />
+            {!(user?.user?.role === "INTERN") ? (
+              <>
+                <Link to={`/inventory/update/${_id}`}>
+                  <PencilIcon className="w-4 hover:text-accent cursor-pointer" />
+                </Link>
+                <TrashIcon
+                  onClick={handleDelete}
+                  className="w-4 hover:text-accent cursor-pointer"
+                />
+              </>
+            ) : (
+              <PiProhibit />
+            )}
           </div>
         </td>
       </tr>

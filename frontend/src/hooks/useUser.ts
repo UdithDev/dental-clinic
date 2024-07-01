@@ -3,13 +3,14 @@ import React from "react";
 type UserSession = {
   username: string;
   email: string;
-  role: string;
+  role: "INTERN" | "MANAGER" | "ADMIN";
   token: string;
 };
 
 interface IUseUser {
   user: UserSession | undefined;
   setUser: React.Dispatch<React.SetStateAction<UserSession | undefined>>;
+  logOut: () => void;
 }
 
 const useUser = (): IUseUser | undefined => {
@@ -22,9 +23,15 @@ const useUser = (): IUseUser | undefined => {
     setUser(user);
   }, []);
 
+  const logOut = () => {
+    localStorage.removeItem("userSession");
+    window.location.href = "/";
+  };
+
   return {
     user,
     setUser,
+    logOut,
   };
 };
 

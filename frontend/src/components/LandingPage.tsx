@@ -3,7 +3,7 @@ import { services } from "../data/test";
 
 function HeroSection() {
   return (
-    <div className="md:flex items-center justify-between mb-16 p-4 bg-[#9AD0C2]">
+    <div className="md:flex items-center justify-between mb-16 p-4 bg-[#9AD0C2] rounded-2xl">
       <div className="md:w-1/2 flex flex-col items-center justify-center">
         <h1 className="font-medium text-black/80 text-[20px] leading-3 animate-pulse">
           Welcome to

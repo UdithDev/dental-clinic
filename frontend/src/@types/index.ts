@@ -12,3 +12,10 @@ export type InventoryItem = {
   updatedAt: string;
 };
 
+export type AxiosError = {
+  response: {
+    data: {
+      message: string;
+    };
+  };
+};

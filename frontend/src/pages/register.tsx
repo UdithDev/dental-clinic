@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { RiGhostLine } from "react-icons/ri";
 import React from "react";
 import { expressUrl } from "../constants";
@@ -24,15 +25,18 @@ const Register = () => {
     };
 
     let response;
-
     try {
       response = await axios.post(reqUrl, payload);
     } catch (error: any) {
       console.log(error);
-      setMessage({
-        type: "Error",
-        message: error.response.data.message,
-      });
+      try {
+        setMessage({
+          type: "Error",
+          message: error.response.data.message,
+        });
+      } catch (error) {
+        console.log(error)
+      }
     }
 
     if (response?.status === 200) {
@@ -40,10 +44,13 @@ const Register = () => {
         type: "Success",
         message: "User has Sign in",
       });
+
+      window.location.href = "/"
     }
   };
+
   return (
-    <div className="flex  ">
+    <div className="flex w-screen h-screen items-center justify-center bg-[#265073]/20">
       {message && (
         <div
           className={`flex gap-2 items-center absolute top-4 right-4 ${
@@ -61,13 +68,13 @@ const Register = () => {
         </div>
       )}
       <div className="w-1/2 flex flex-col items-center justify-center">
-        <form className="max-w-xl  bg-[#265073]/20 rounded-xl p-10 flex flex-col justify-center items-center gap-4 ">
-          <h2 className="flex gap-2 items-center font-bold text-2xl text-headbgsm">
+        <form className="max-w-md w-full bg-[#265073]/20 rounded-xl p-10 flex flex-col justify-center items-center gap-4 ">
+          <h2 className="flex gap-2 font-bold text-2xl text-headbgsm w-full justify-center items-center">
             Sign Here !
             <RiGhostLine className="text-xl animate-pulse" />
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-4 flex flex-col w-full px-5">
             <label
               htmlFor="username"
               className="flex items-start justify-start font-semibold"
@@ -77,7 +84,7 @@ const Register = () => {
             <input
               title="username"
               type=" text"
-              className="bg-transparent border-2 w-full p-3 m-2  rounded-full !outline-none placeholder:font-semibold px-3 "
+              className="bg-transparent border-2 w-full p-3 rounded-full !outline-none placeholder:font-semibold px-3"
               placeholder="Username"
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -91,7 +98,7 @@ const Register = () => {
             <input
               title="password"
               type="password"
-              className="bg-transparent border-2 w-full p-3 m-2 rounded-full !outline-none placeholder:font-semibold px-3 "
+              className="bg-transparent border-2 w-full p-3 rounded-full !outline-none placeholder:font-semibold px-3 "
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -104,7 +111,7 @@ const Register = () => {
             <input
               title="email"
               type="email"
-              className="bg-transparent border-2 w-full p-3 m-2 rounded-full !outline-none placeholder:font-semibold px-3 "
+              className="bg-transparent border-2 w-full p-3 rounded-full !outline-none placeholder:font-semibold px-3 "
               placeholder="email"
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -114,7 +121,7 @@ const Register = () => {
             <button
               title="signIn"
               type="button"
-              className="bg-[#265073] text-white p-2 rounded-full w-full font-semibold"
+              className="bg-[#265073] text-white p-2 rounded-full w-full font-semibold mt-5"
               onClick={handleSignin}
             >
               Sign In

@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       colors:{
-        accent:"#e63946",
+        accent:"#2D9596",
         pearlWhite: "#EAE7DC",
         headbg:"#2D9596",
         hover:"#9AD0C2",

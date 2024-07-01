@@ -3,11 +3,17 @@ const router = express.Router();
 const User = require("../models/User");
 
 const { isAdmin } = require("../middlewares/authCheck");
-const { registerUser, loginUser } = require("../controllers/userController");
+const {
+  registerUser,
+  loginUser,
+  getUserList,
+} = require("../controllers/userController");
 
 router.post("/register", registerUser);
 
 router.post("/login", loginUser);
+
+router.get("/all", getUserList);
 
 router.delete("/delete", [isAdmin], async (req, res) => {
   const { username } = req.query;

@@ -115,12 +115,21 @@ const Login = () => {
               Login
             </button>
           </div>
-          <div className="flex justify-center">
+          <div className="flex flex-col justify-center gap-6">
             <Link to="/forgotPassword" className="underline opacity-80 text-sm">
               forgot password?
             </Link>
           </div>
+
+          <Link
+              to="/register"
+              className="bg-[#265073] text-white p-2 rounded-full font-semibold w-36 text-center"
+            >
+              Register?
+            </Link>
         </form>
+
+        
       </div>
     </div>
   );
