@@ -9,6 +9,7 @@ import { FaUserTimes } from "react-icons/fa";
 import { useTokenAsBearer } from "../utils/useToken";
 import useUser from "../hooks/useUser";
 import Swal from "sweetalert2";
+import { Await } from "react-router-dom";
 
 const AddUser = () => {
   const [username, setUsername] = React.useState<string>();
@@ -81,8 +82,9 @@ const AddUser = () => {
         type: "Success",
         message: "User added",
       });
+      // alert("User added");
 
-      window.location.href = "/";
+      window.location.href = "/adduser";
     }
   };
 
@@ -93,7 +95,7 @@ const AddUser = () => {
   }, [deleteToggle]);
 
   return (
-    <div className="flex flex-col items-center justify-center relative">
+    <div className="flex flex-col items-center justify-center relative ">
       {message && (
         <div
           className={`flex gap-2 items-center absolute top-0 right-4 ${
@@ -234,11 +236,21 @@ const AddUser = () => {
                       setDeleteToggle(!deleteToggle);
                       // alert("Deleted")
                       Swal.fire({
-                        position: "center",
-                        icon: "success",
-                        title: " User successfully saved!",
-                        showConfirmButton: false,
-                        timer: 3000,
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#265073",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!",
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          Swal.fire({
+                            title: "Deleted!",
+                            text: "User has been deleted.",
+                            icon: "success",
+                          });
+                        }
                       });
                     }
                   }}
